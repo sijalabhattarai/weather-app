@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import styles from "./page.module.css";
+import styles from "./page.css";
 
 function getCurrentDate() {
   const currentDate = new Date();
@@ -54,31 +54,31 @@ const Home = () => {
   }, []);
 
   return (
-    <main className={styles.main}>
-      <article className={styles.widget}>
+    <main className="main">
+      <article className="widget">
         <form
-          className={styles.weatherLocation}
+          className="weatherLocation"
           onSubmit={(e) => {
             e.preventDefault();
             fetchData(city);
           }}
         >
           <input
-            className={styles.input_field}
+            className="input_field"
             placeholder="Enter city name"
             type="text"
             id="cityName"
             name="cityName"
             onChange={(e) => setCity(e.target.value)}
           />
-          <button className={styles.search_button} type="submit">
-            Seach
+          <button className="search_button" type="submit">
+            Search
           </button>
         </form>
         {weatherData && weatherData.weather && weatherData.weather[0] ? (
           <>
-            <div className={styles.icon_and_weatherInfo}>
-              <div className={styles.weatherIcon}>
+            <div className="icon_and_weatherInfo">
+              <div className="weatherIcon">
                 {weatherData?.weather[0]?.description === "rain" ||
                 weatherData?.weather[0]?.description === "fog" ? (
                   <i
@@ -88,23 +88,23 @@ const Home = () => {
                   <i className="wi wi-day-cloudy"></i>
                 )}
               </div>
-              <div className={styles.weatherInfo}>
-                <div className={styles.temperature}>
+              <div className="weatherInfo">
+                <div className="temperature">
                   <span>
                     {(weatherData?.main?.temp - 273.5).toFixed(2) +
                       String.fromCharCode(176)}
                   </span>
                 </div>
-                <div className={styles.weatherCondition}>
+                <div className="weatherCondition">
                   {weatherData?.weather[0]?.description?.toUpperCase()}
                 </div>
               </div>
             </div>
-            <div className={styles.place}>{weatherData?.name}</div>
-            <div className={styles.date}>{date}</div>
+            <div className="place">{weatherData?.name}</div>
+            <div className="date">{date}</div>
           </>
         ) : (
-          <div className={styles.place}>Loading...</div>
+          <div className="place">Loading...</div>
         )}
       </article>
     </main>
